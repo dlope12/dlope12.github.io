@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="initial-scale=1,maximum-scale=1,user-scalable=no">
+  <title>Intro to FeatureLayer - 4.10</title>
+
+  <link rel="stylesheet" href="https://js.arcgis.com/4.10/esri/css/main.css">
+  <script src="https://js.arcgis.com/4.10/"></script>
+
+  <style>
+    html,
+    body,
+    #viewDiv {
+      padding: 0;
+      margin: 0;
+      height: 100%;
+      width: 100%;
+    }
+  </style>
+
+  <script>
+    require([
+        "esri/Map",
+        "esri/views/MapView",
+        "esri/layers/FeatureLayer"
+      ],
+      function(
+        Map, MapView,
+        FeatureLayer
+      ) {
+
+        var map = new Map({
+          basemap: "hybrid"
+        });
+
+        var view = new MapView({
+          container: "viewDiv",
+          map: map,
+
+          extent: { // autocasts as new Extent()
+            xmin: -11849089,
+            ymin: 2991447,
+            xmax: -9820025,
+            ymax: 4424877,
+            spatialReference: 102100
+          }
+        });
+
+        /********************
+         * Add feature layer
+         ********************/
+
+        // Carbon storage of trees in Warren Wilson College.
+        var featureLayer = new FeatureLayer({
+          url: "https://services9.arcgis.com/SDQDNhpG8jikA0D1/ArcGIS/rest/services/Solid_Waste_Facilities/FeatureServer?token=kOE6ln4Ebb7f8OIy2B-oluIsE9OqHpbibGs2jmQaMs9WFLIeD7CLNyI3EY5tgkGUyF92IRVW9YjMAw-iWpohMKPyy1sy68ntr2QuzjOYcmYdKxlOKe4Q4V7IromTAOv7MGAQoJNUsE5WYpZwFVsgDb8VZ-wFFk1Hw0KxYCZTDayQKSgI4zWAFArsshMNHsJgCMwLmtmwzuvbN1PEtztKywmOTnRBf_6aqW1RQUTEHNBlKyi1ob4vpsJereC8DzoR"
+        });
+
+        map.add(featureLayer);
+
+      });
+  </script>
+</head>
+
+<body>
+  <div id="viewDiv"></div>
+</body>
+
+</html>
